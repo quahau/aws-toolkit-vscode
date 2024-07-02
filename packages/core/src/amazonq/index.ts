@@ -11,7 +11,7 @@ export { MessageListener } from './messages/messageListener'
 export { AuthController } from './auth/controller'
 export { showAmazonQWalkthroughOnce } from './onboardingPage/walkthrough'
 export { openAmazonQWalkthrough } from './onboardingPage/walkthrough'
-export { qAPI } from './extApi'
+export { api } from './extApi'
 
 /**
  * main from createMynahUI is a purely browser dependency. Due to this

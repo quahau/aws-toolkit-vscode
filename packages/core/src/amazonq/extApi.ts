@@ -5,11 +5,11 @@
 
 import vscode from 'vscode'
 import { VSCODE_EXTENSION_ID } from '../shared/utilities'
-import { ToolkitError } from '../shared'
 import { GenerateAssistantResponseCommandOutput, GenerateAssistantResponseRequest } from '@amzn/codewhisperer-streaming'
 import { FeatureAuthState } from '../codewhisperer/util/authUtil'
+import { ToolkitError } from '../shared'
 
-export interface qAPI {
+export interface api {
     chatApi: {
         chat(request: GenerateAssistantResponseRequest): Promise<GenerateAssistantResponseCommandOutput>
     }
@@ -19,13 +19,21 @@ export interface qAPI {
     }
 }
 
+export class AmazonqNotFoundError extends ToolkitError {
+    constructor() {
+        super(`${VSCODE_EXTENSION_ID.amazonq} is not installed`, { code: 'AmazonQNotInstalled' })
+    }
+}
+
 /**
- * Get the extension API for Q
+ * Get the extension API for Amazon q
+ *
+ * @returns The extension API for Amazon q, or undefined if the extension is not installed
  */
-export async function getQAPI(): Promise<qAPI> {
+export async function getAmazonqAPI(): Promise<api | undefined> {
     const ext = vscode.extensions.getExtension(VSCODE_EXTENSION_ID.amazonq)
     if (!ext) {
-        throw new ToolkitError('Amazon Q is not installed', { code: 'AmazonQNotInstalled' })
+        return undefined
     }
     return ext.activate()
 }

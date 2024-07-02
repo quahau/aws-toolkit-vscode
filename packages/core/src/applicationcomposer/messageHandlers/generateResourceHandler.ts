@@ -13,7 +13,7 @@ import {
 } from '../types'
 import globals from '../../shared/extensionGlobals'
 import { getLogger } from '../../shared/logger/logger'
-import { getQAPI } from '../../amazonq/extApi'
+import { AmazonqNotFoundError, getAmazonqAPI } from '../../amazonq/extApi'
 
 const TIMEOUT = 30_000
 
@@ -53,7 +53,10 @@ async function generateResource(prompt: string) {
     let startTime = globals.clock.Date.now()
 
     try {
-        const qApi = await getQAPI()
+        const qApi = await getAmazonqAPI()
+        if (!qApi) {
+            throw new AmazonqNotFoundError()
+        }
         const request: GenerateAssistantResponseRequest = {
             conversationState: {
                 currentMessage: {
