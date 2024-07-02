@@ -6,7 +6,7 @@
 import { GenerateAssistantResponseCommandOutput, GenerateAssistantResponseRequest } from '@amzn/codewhisperer-streaming'
 import { AuthUtil } from 'aws-core-vscode/codewhisperer'
 import { ChatSession } from 'aws-core-vscode/codewhispererChat'
-import { qAPI } from 'aws-core-vscode/amazonq'
+import { api } from 'aws-core-vscode/amazonq'
 
 export default {
     chatApi: {
@@ -25,4 +25,4 @@ export default {
             return AuthUtil.instance.getChatAuthState()
         },
     },
-} as qAPI
+} as api

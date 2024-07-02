@@ -9,10 +9,10 @@ import { getAmazonqAPI } from '../../amazonq/extApi'
 
 export async function initMessageHandler(context: WebviewContext) {
     const filePath = context.defaultTemplatePath
-    const qApi = await getAmazonqAPI()
+    const amazonqApi = await getAmazonqAPI()
     let isConnectedToCodeWhisperer = false
-    if (qApi) {
-        const authState = await qApi.authApi.getChatAuthState()
+    if (amazonqApi) {
+        const authState = await amazonqApi.authApi.getChatAuthState()
         isConnectedToCodeWhisperer =
             authState.codewhispererChat === 'connected' || authState.codewhispererChat === 'expired'
     }

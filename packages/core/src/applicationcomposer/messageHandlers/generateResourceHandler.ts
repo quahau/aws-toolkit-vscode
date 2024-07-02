@@ -53,8 +53,8 @@ async function generateResource(prompt: string) {
     let startTime = globals.clock.Date.now()
 
     try {
-        const qApi = await getAmazonqAPI()
-        if (!qApi) {
+        const amazonqApi = await getAmazonqAPI()
+        if (!amazonqApi) {
             throw new AmazonqNotFoundError()
         }
         const request: GenerateAssistantResponseRequest = {
@@ -74,11 +74,11 @@ async function generateResource(prompt: string) {
         let supplementaryWebLinks: SupplementaryWebLink[] = []
         let references: Reference[] = []
 
-        await qApi.authApi.reauthIfNeeded()
+        await amazonqApi.authApi.reauthIfNeeded()
 
         startTime = globals.clock.Date.now()
         // TODO-STARLING - Revisit to see if timeout still needed prior to launch
-        const data = await timeout(qApi.chatApi.chat(request), TIMEOUT)
+        const data = await timeout(amazonqApi.chatApi.chat(request), TIMEOUT)
         const initialResponseTime = globals.clock.Date.now() - startTime
         getLogger().debug(`CW Chat initial response: ${JSON.stringify(data, undefined, 2)}, ${initialResponseTime} ms`)
         if (data['$metadata']) {
