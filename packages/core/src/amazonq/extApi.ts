@@ -9,6 +9,10 @@ import { GenerateAssistantResponseCommandOutput, GenerateAssistantResponseReques
 import { FeatureAuthState } from '../codewhisperer/util/authUtil'
 import { ToolkitError } from '../shared'
 
+/**
+ * This interface is used and exported by the amazon q extension. If you make a change here then
+ * update the corresponding api implementation in packages/amazonq/src/api.ts
+ */
 export interface api {
     chatApi: {
         chat(request: GenerateAssistantResponseRequest): Promise<GenerateAssistantResponseCommandOutput>
