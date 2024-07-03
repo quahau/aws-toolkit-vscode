@@ -13,7 +13,7 @@ import {
 } from '../types'
 import globals from '../../shared/extensionGlobals'
 import { getLogger } from '../../shared/logger/logger'
-import { AmazonqNotFoundError, getAmazonqAPI } from '../../amazonq/extApi'
+import { AmazonqNotFoundError, getAmazonqApi } from '../../amazonq/extApi'
 
 const TIMEOUT = 30_000
 
@@ -53,7 +53,7 @@ async function generateResource(prompt: string) {
     let startTime = globals.clock.Date.now()
 
     try {
-        const amazonqApi = await getAmazonqAPI()
+        const amazonqApi = await getAmazonqApi()
         if (!amazonqApi) {
             throw new AmazonqNotFoundError()
         }

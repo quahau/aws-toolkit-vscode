@@ -8,14 +8,14 @@ import { ApplicationComposerManager } from '../webviewManager'
 import vscode from 'vscode'
 import { telemetry } from '../../shared/telemetry/telemetry'
 import { ToolkitError } from '../../shared/errors'
-import { getAmazonqAPI } from '../../amazonq/extApi'
+import { getAmazonqApi } from '../../amazonq/extApi'
 
 export const openTemplateInComposerCommand = Commands.declare(
     'aws.openInApplicationComposer',
     (manager: ApplicationComposerManager) => async (arg?: vscode.TextEditor | vscode.Uri) => {
         let result: vscode.WebviewPanel | undefined
         await telemetry.appcomposer_openTemplate.run(async span => {
-            const amazonqApi = await getAmazonqAPI()
+            const amazonqApi = await getAmazonqApi()
 
             let hasChatAuth = false
             if (amazonqApi) {

@@ -5,11 +5,11 @@
 
 import path from 'path'
 import { InitResponseMessage, MessageType, WebviewContext, Command } from '../types'
-import { getAmazonqAPI } from '../../amazonq/extApi'
+import { getAmazonqApi } from '../../amazonq/extApi'
 
 export async function initMessageHandler(context: WebviewContext) {
     const filePath = context.defaultTemplatePath
-    const amazonqApi = await getAmazonqAPI()
+    const amazonqApi = await getAmazonqApi()
     let isConnectedToCodeWhisperer = false
     if (amazonqApi) {
         const authState = await amazonqApi.authApi.getChatAuthState()

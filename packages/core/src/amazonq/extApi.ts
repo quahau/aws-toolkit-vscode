@@ -34,7 +34,7 @@ export class AmazonqNotFoundError extends ToolkitError {
  *
  * @returns The extension API for Amazon q, or undefined if the extension is not installed
  */
-export async function getAmazonqAPI(): Promise<api | undefined> {
+export async function getAmazonqApi(): Promise<api | undefined> {
     const ext = vscode.extensions.getExtension(VSCODE_EXTENSION_ID.amazonq)
     if (!ext) {
         return undefined

@@ -25,4 +25,4 @@ export default {
             return AuthUtil.instance.getChatAuthState()
         },
     },
-} as api
+} satisfies api
